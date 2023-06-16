@@ -54,9 +54,10 @@ class Db:
 
     def update_row(self, field_value:str, new_value, filter_field:str, filter_value, table_name:str) -> None:
         if type(new_value) == str:
-                new_value = "'" + new_value + "'"
+            new_value = "'" + new_value + "'"
         if type(filter_value) == str:
             filter_value = "'" + filter_value + "'"
+            
         @self
         def update_row(cursor):
             query = f"UPDATE {table_name} SET {field_value} = {new_value} WHERE {filter_field} = {filter_value}"
