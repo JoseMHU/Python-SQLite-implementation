@@ -1,8 +1,6 @@
 from handler import Db
 
-if __name__ == "__main__":
-    # test
-    
+if __name__ == "__main__": 
     test_db = Db("./test.db")
     test_db.create_table(table_name="fabricante", columns=[("id", "INTEGER PRIMARY KEY AUTOINCREMENT"),
                                                            ("nombre", "TEXT")])
@@ -42,3 +40,8 @@ if __name__ == "__main__":
     FROM producto AS p
     INNER JOIN fabricante AS f ON f.id = p.id_fabricante
     """)
+
+    test_db.delete_rows("nombre", ["Huawei", "Samsung"], "fabricante")
+
+    test_db.update_row("nombre", "Disco duro SATA3 10TB", "id", "1", "producto")
+    test_db.update_row("precio", 150.57, "id", 1, "producto")
